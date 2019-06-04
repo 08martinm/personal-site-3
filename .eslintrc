@@ -30,6 +30,10 @@
     "no-only-tests/no-only-tests": "error",
     "no-underscore-dangle": "off",
     "react/jsx-filename-extension": "off",
-    "prettier/prettier": ["error", { "trailingComma": "all" }]
+    "prettier/prettier": ["error", { "trailingComma": "all" }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.stories.js", "**/config/**"] }
+    ]
   }
 }
