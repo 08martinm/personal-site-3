@@ -5,79 +5,59 @@ const {
   colors,
   fonts: { FONT_FAMILY },
 } = theme;
-const {
-  brand: { PRIMARY, PRIMARY_DARK },
-  neutral: { WHITE, GRAY_1, GRAY_2, GRAY_3, GRAY_6 },
-} = colors;
+const { WHITE, LIGHT_GRAY, GRAY, DARK_GRAY, SUCCESS, ERROR } = colors;
 
-const cssClasses = {
-  pressed: css`
-    background-color: ${PRIMARY_DARK};
-  `,
-  secondary: css`
-    background-color: ${props => (props.pressed ? GRAY_6 : GRAY_2)};
-    &:active {
-      background-color: ${GRAY_6};
-    }
-  `,
-  inverse: css`
-    background-color: ${props => (props.pressed ? GRAY_1 : WHITE)};
-    color: ${PRIMARY};
-    &:active {
-      background-color: ${GRAY_1};
-    }
-  `,
-  small: css`
-    height: 40px;
-    width: 126px;
-    font-size: 14px;
-  `,
+const propStyles = {
   disabled: css`
-    background-color: ${GRAY_1};
-    color: ${GRAY_3};
     cursor: not-allowed;
   `,
+  status: status => {
+    switch (status) {
+      case 'success':
+        return css`
+          background-color: ${SUCCESS};
+        `;
+      case 'error':
+        return css`
+          background-color: ${ERROR};
+        `;
+      default:
+        return css``;
+    }
+  },
 };
 
 const loadingStyles = css`
-  ${cssClasses.disabled};
+  ${propStyles.disabled};
   transition: color 0.5s linear 1s;
   transition: background-color 0.5s linear 1s;
 `;
 
-export const btnStyles = css`
+const StyledButton = styled.button.attrs({
+  disabled: props => props.disabled || props.status === 'error',
+})`
   display: block;
   position: relative;
   border: 0px;
-  border-radius: 24px;
-  cursor: pointer;
+  border-radius: 25px;
   font-family: ${FONT_FAMILY};
   font-size: 18px;
-  font-weight: bold;
-  height: 48px;
+  height: 50px;
   text-transform: uppercase;
   text-decoration: none;
-  width: 197px;
+  width: 165px;
+  background-color: ${GRAY};
+  color: ${DARK_GRAY};
   &:focus {
     outline: none;
+    box-shadow: 0 0 3px 3px ${WHITE};
   }
-  background-color: ${PRIMARY};
-  color: ${WHITE};
   &:active {
-    background-color: ${PRIMARY_DARK};
+    background-color: ${LIGHT_GRAY};
   }
-  ${props => props.pressed && cssClasses.pressed};
-  ${props => props.styleType === 'secondary' && cssClasses.secondary};
-  ${props => props.styleType === 'inverse' && cssClasses.inverse};
-  ${props => props.size === 'small' && cssClasses.small};
-  ${props => props.disabled && cssClasses.disabled};
   ${props => props.loading && loadingStyles};
-`;
-
-const StyledButton = styled.button.attrs({
-  disabled: props => props.disabled || props.pressed,
-})`
-  ${btnStyles};
+  ${props => propStyles.status(props.status)};
+  ${props => props.disabled && propStyles.disabled};
 `;
 
 export default StyledButton;
