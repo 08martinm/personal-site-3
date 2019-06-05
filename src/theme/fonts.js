@@ -1,6 +1,6 @@
-const OPEN_SANS = 'Open Sans';
+const Roboto = 'Roboto';
 const SAN_SERIF = 'sans-serif';
 
-const FONT_FAMILY = `${OPEN_SANS}, ${SAN_SERIF}`;
+const FONT_FAMILY = `${Roboto}, ${SAN_SERIF}`;
 
-export default Object.freeze({ FONT_FAMILY, OPEN_SANS, SAN_SERIF });
+export default Object.freeze({ FONT_FAMILY, Roboto, SAN_SERIF });
