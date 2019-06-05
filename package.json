@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"yarn dev:app\" \"yarn dev:server\"",
-    "dev:storybook": "start-storybook -p 5001 -c config/storybook",
+    "storybook": "start-storybook --ci -p 5001 -c config/storybook",
     "dev:app": "webpack-dev-server --config config/webpack/frontend.dev",
     "dev:server": "nodemon server/index.js --inspect=0.0.0.0:9229 --exec babel-node",
     "prod:build": "yarn prod:clear && webpack --config config/webpack/frontend.prod && webpack --config config/webpack/backend.prod",
