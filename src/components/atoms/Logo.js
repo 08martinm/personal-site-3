@@ -6,7 +6,7 @@ const Logo = styled.img.attrs({
   alt: 'Logo',
 })`
   display: block;
-  height: 40px;
+  height: 60px;
 `;
 
 export default Logo;
