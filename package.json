@@ -1,7 +1,7 @@
 {
-  "name": "sloan_directory",
+  "name": "personal_site_3",
   "version": "1.0.0",
-  "description": "MIT Sloan Directory app",
+  "description": "Personal website",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"yarn dev:app\" \"yarn dev:server\"",
