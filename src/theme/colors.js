@@ -8,4 +8,5 @@ export default Object.freeze({
   WHITE: '#F2F2F2',
   ERROR: '#EB5757',
   SUCCESS: '#6FCF97',
+  BLUE: '#2D9CDB',
 });
