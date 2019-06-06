@@ -14,7 +14,7 @@ const Container = styled.div`
   background-color: ${LIGHTEST_GRAY};
   width: 100vw;
 `;
-const Intro = styled(H1)`
+const Title = styled(H1)`
   padding-top: 30px;
   text-align: center;
 `;
@@ -55,7 +55,7 @@ const HeadShotContainer = styled.div`
 
 const Profile = props => (
   <Container {...props}>
-    <Intro>Hi! I{`'`}m Matthew L. Martin</Intro>
+    <Title>Profile</Title>
     <HR />
     <TagLine>
       Above all else, I’d characterize myself as an avid learner.
