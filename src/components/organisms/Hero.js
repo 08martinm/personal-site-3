@@ -4,17 +4,13 @@ import HeroGraphic from '../atoms/HeroGraphic';
 import { H1, H2 } from '../atoms/Headers';
 import HR from '../atoms/HR';
 import DownArrow from '../atoms/DownArrow';
+import Column from '../atoms/Column';
 import theme from '../../theme';
 
 const { colors } = theme;
 const { DARKEST_GRAY } = colors;
 
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: space-between;
+const Container = styled(Column)`
   background-color: ${DARKEST_GRAY};
   width: 100vw;
   height: 650px;
