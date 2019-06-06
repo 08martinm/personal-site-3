@@ -7,9 +7,6 @@ const HeroGraphic = styled.img.attrs({
 })`
   display: block;
   width: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
 `;
 
 export default HeroGraphic;
