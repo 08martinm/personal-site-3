@@ -49,7 +49,7 @@ const TextInput = ({
 TextInput.propTypes = {
   autoComplete: PropTypes.string,
   error: PropTypes.bool.isRequired,
-  helptext: PropTypes.string,
+  helptext: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,

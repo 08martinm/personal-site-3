@@ -10,7 +10,7 @@ const StyledTextArea = styled.textarea`
   height: 100px;
 `;
 
-const TextInput = ({
+const TextArea = ({
   error,
   onBlur,
   onChange,
@@ -38,20 +38,21 @@ const TextInput = ({
   );
 };
 
-TextInput.propTypes = {
+TextArea.propTypes = {
   placeholder: PropTypes.string.isRequired,
   error: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  helptext: PropTypes.string.isRequired,
+  helptext: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onBlur: PropTypes.func,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
 };
-TextInput.defaultProps = {
+TextArea.defaultProps = {
   onBlur: undefined,
   onClick: undefined,
   onFocus: undefined,
+  helptext: '',
 };
 
-export default TextInput;
+export default TextArea;
