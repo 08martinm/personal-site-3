@@ -37,9 +37,11 @@ const Position = styled(H4)`
 `;
 const Credential = ({ name, position, description, ...props }) => (
   <Container {...props}>
-    <NameContainer>
-      <Name>{name}</Name>
-    </NameContainer>
+    {name && (
+      <NameContainer>
+        <Name>{name}</Name>
+      </NameContainer>
+    )}
     <ContentContainer>
       <Position>{position}</Position>
       {description}
@@ -48,9 +50,12 @@ const Credential = ({ name, position, description, ...props }) => (
 );
 
 Credential.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   position: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+};
+Credential.defaultProps = {
+  name: '',
 };
 
 export default Credential;
