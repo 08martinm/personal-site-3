@@ -13,6 +13,7 @@ const BREAK_POINT = '1000px';
 const Container = styled.div`
   background-color: ${LIGHTEST_GRAY};
   width: 100vw;
+  padding-bottom: 50px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;
@@ -30,6 +31,8 @@ const DetailsHeader = styled(AboutMeHeader)`
 `;
 const TagLine = styled(P)`
   text-align: center;
+  max-width: 600px;
+  margin: 25px auto 0;
 `;
 const Row = styled.div`
   display: flex;
@@ -57,18 +60,19 @@ const Profile = props => (
   <Container {...props}>
     <Title>Profile</Title>
     <HR />
-    <TagLine>
-      Above all else, I’d characterize myself as an avid learner.
+    <TagLine spaced>
+      <b>Tl;dr</b>:<br />I{`'`}m an avid learner intensely curious about how
+      software can connect people and eliminate inefficiencies.
     </TagLine>
     <Row>
       <Section1>
         <AboutMeHeader>About Me</AboutMeHeader>
         <P spaced>
           I’m a full-stack software engineer who specializes in putting together
-          full-featured, data-intensive sites QUICKLY. Between architecting
-          databases, handling migrations, creating RESTful APIs, and handling
-          front-end state management, I focus on keeping data in a clean,
-          approachable format.
+          full-featured, data-heavy sites quickly. Between architecting
+          databases, handling migrations, creating RESTful APIs, and managing
+          front-end state, I focus on keeping the data that powers applications
+          in a clean, approachable format.
         </P>
       </Section1>
       <HeadShotContainer>

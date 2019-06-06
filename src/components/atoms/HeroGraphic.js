@@ -7,6 +7,7 @@ const HeroGraphic = styled.img.attrs({
 })`
   display: block;
   width: 100vw;
+  max-height: 30vh;
 `;
 
 export default HeroGraphic;

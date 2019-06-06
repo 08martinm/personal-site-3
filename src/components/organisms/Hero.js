@@ -13,7 +13,7 @@ const { DARKEST_GRAY } = colors;
 const Container = styled(Column)`
   background-color: ${DARKEST_GRAY};
   width: 100vw;
-  height: 650px;
+  height: 700px;
   max-height: 100vh;
 `;
 const PositionedH2 = styled(H2)`
@@ -30,9 +30,9 @@ const PositionedDownArrow = styled(DownArrow)`
 const Hero = props => (
   <Container {...props}>
     <HeroGraphic />
-    <PositionedH2 color="white">Hi! I{`'`}m Matthew L. Martin</PositionedH2>
+    <PositionedH2 color="white">Hi, I{`'`}m Matthew L. Martin</PositionedH2>
     <HR color="white" />
-    <H1 color="white">Let{`'`}s Build</H1>
+    <H1 color="white">Welcome to my site!</H1>
     <PositionedDownArrow />
   </Container>
 );
