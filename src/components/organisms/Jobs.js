@@ -12,6 +12,7 @@ const { LIGHT_GRAY } = colors;
 const Container = styled.div`
   background-color: ${LIGHT_GRAY};
   width: 100vw;
+  padding-bottom: 50px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;

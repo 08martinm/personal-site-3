@@ -30,7 +30,7 @@ const Form = styled.form`
   justify-content: flex-start;
   align-items: center;
   width: 80%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 50px 0;
   & > * {
     margin: 10px 0 0;
@@ -38,11 +38,11 @@ const Form = styled.form`
 `;
 const OL = styled.ol`
   width: 80%;
-  max-width: 400px;
+  max-width: 600px;
 `;
 const TagLine = styled(P)`
   width: 80%;
-  max-width: 400px;
+  max-width: 600px;
 `;
 
 class Skills extends Component {
