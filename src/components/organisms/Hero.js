@@ -32,7 +32,7 @@ const Hero = props => (
     <HeroGraphic />
     <PositionedH2 color="white">Hi, I{`'`}m Matthew L. Martin</PositionedH2>
     <HR color="white" />
-    <H1 color="white">Welcome to my site!</H1>
+    <H1 color="white">Welcome!</H1>
     <PositionedDownArrow />
   </Container>
 );

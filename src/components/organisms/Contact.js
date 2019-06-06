@@ -127,7 +127,7 @@ class Skills extends Component {
     } = errors;
     return (
       <Container {...this.props}>
-        <Title color="white">Skills</Title>
+        <Title color="white">Contact</Title>
         <HR color="white" />
         <H3 color="white">Let{`'`}s Connect</H3>
         <TagLine color="white">
