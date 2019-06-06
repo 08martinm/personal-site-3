@@ -28,6 +28,7 @@ const Password = props => {
     <Input
       {...props}
       type="password"
+      name=""
       helptext={
         <Fragment>
           <Req showError={error && length()}>Min. 8 char{`'`}s, </Req>
@@ -43,9 +44,7 @@ const Password = props => {
 Password.propTypes = {
   autoComplete: PropTypes.string,
   error: PropTypes.bool.isRequired,
-  helptext: PropTypes.string,
   label: PropTypes.string,
-  name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func,
@@ -54,7 +53,6 @@ Password.propTypes = {
 };
 Password.defaultProps = {
   autoComplete: undefined,
-  helptext: '',
   label: '',
   onBlur: undefined,
   onClick: undefined,

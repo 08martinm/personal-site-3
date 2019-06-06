@@ -3,7 +3,7 @@ import theme from '../../../../theme';
 import { StyledLabel, elevatedStyles } from './Label';
 
 const { colors, fonts } = theme;
-const { ERROR, LIGHT_GRAY, DARK_GRAY } = colors;
+const { ERROR, WHITE, LIGHT_GRAY, DARK_GRAY } = colors;
 const { FONT_FAMILY } = fonts;
 
 const propStyles = {
@@ -31,6 +31,10 @@ const inputStyles = css`
   &:-webkit-autofill {
     & ~ ${StyledLabel} {
       ${elevatedStyles};
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 3px 3px ${WHITE};
     }
   }
   ::placeholder {

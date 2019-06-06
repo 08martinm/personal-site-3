@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import theme from '../../theme';
 
@@ -7,9 +7,6 @@ const { BLACK, WHITE } = colors;
 const { FONT_FAMILY } = fonts;
 
 const propStyles = {
-  spaced: css`
-    line-height: 40px;
-  `,
   color: color => {
     switch (color) {
       case 'white':
@@ -20,20 +17,18 @@ const propStyles = {
   },
 };
 
-const P = styled.p`
+const LI = styled.li`
   font-family: ${FONT_FAMILY};
   font-size: 20px;
   color: ${props => propStyles.color(props.color)};
-  ${props => props.spaced && propStyles.spaced}
+  margin-top: 25px;
 `;
 
-P.propTypes = {
-  spaced: PropTypes.bool,
+LI.propTypes = {
   color: PropTypes.string,
 };
-P.defaultProps = {
-  spaced: false,
+LI.defaultProps = {
   color: 'default',
 };
 
-export default P;
+export default LI;

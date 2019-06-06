@@ -34,7 +34,7 @@ const Helptext = ({ helptext, error, ...props }) => (
 );
 
 Helptext.propTypes = {
-  helptext: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  helptext: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   error: PropTypes.bool.isRequired,
 };
 
