@@ -15,6 +15,11 @@ module.exports = {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
       { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.svg$/, loader: 'svg-sprite-loader' },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        use: [{ loader: 'url-loader', options: { limit: 8192 } }],
+      },
     ],
   },
   devtool: 'source-map',

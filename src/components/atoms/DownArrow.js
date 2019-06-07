@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { scroller } from 'react-scroll';
 import theme from '../../theme';
 
 const { colors } = theme;
@@ -45,10 +46,19 @@ const Arrow = styled.div`
   transition: border 1s;
 `;
 
-const DownArrow = props => (
-  <Background {...props}>
-    <Arrow />
-  </Background>
-);
+const DownArrow = props => {
+  const handleClick = () => {
+    scroller.scrollTo('Profile', {
+      duration: 800,
+      delay: 100,
+      smooth: true,
+    });
+  };
+  return (
+    <Background {...props} onClick={handleClick}>
+      <Arrow />
+    </Background>
+  );
+};
 
 export default DownArrow;

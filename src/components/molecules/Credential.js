@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { H3, H4 } from '../atoms/Headers';
@@ -12,7 +12,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
-  cursor: pointer;
+  cursor: ${props => (props.height > 200 ? 'pointer' : 'auto')};
   padding-top: 20px;
 `;
 const NameContainer = styled.div`
@@ -27,13 +27,12 @@ const NameContainer = styled.div`
 const ContentContainer = styled.div`
   flex: 0 1 600px;
   position: relative;
+  transition: max-height 0.75s ease;
   &.uncollapsed {
-    max-height: 500vh;
-    transition: max-height 0.75s linear 0s;
+    max-height: ${props => `${props.height}px`};
   }
   &.collapsed {
     max-height: 200px;
-    transition: max-height 0.75s linear 0s;
   }
 `;
 const Name = styled(H3)`
@@ -48,39 +47,67 @@ const Position = styled(H4)`
     text-align: center;
   }
 `;
-const Credential = ({ name, position, description, ...props }) => {
-  const [collapsed, setCollapsed] = useState(true);
-  const toggleCollapsed = () => setCollapsed(!collapsed);
-  const handleKeyPress = e => {
+class Credential extends Component {
+  state = {
+    collapsed: false,
+  };
+
+  componentDidMount() {
+    const height = this.divElement.clientHeight;
+    this.height = height;
+    this.setState({ collapsed: true });
+  }
+
+  toggleCollapsed = () =>
+    this.setState(state => ({ collapsed: !state.collapsed }));
+
+  handleKeyPress = e => {
     const key = e.keyCode || e.which;
     if (key === 13) {
-      toggleCollapsed();
+      this.toggleCollapsed();
     }
   };
-  return (
-    <Container {...props} onClick={toggleCollapsed}>
-      {name && (
-        <NameContainer>
-          <Name>{name}</Name>
-        </NameContainer>
-      )}
-      <ContentContainer className={collapsed ? 'collapsed' : 'uncollapsed'}>
-        <Position>{position}</Position>
-        {description}
-        <CollapseBar
-          onKeyPress={handleKeyPress}
-          tabIndex="0"
-          className={collapsed && 'collapsed'}
-        />
-      </ContentContainer>
-    </Container>
-  );
-};
+
+  render() {
+    const { name, position, description, ...props } = this.props;
+    const { collapsed } = this.state;
+    return (
+      <Container
+        {...props}
+        onClick={this.toggleCollapsed}
+        ref={divElement => {
+          this.divElement = divElement;
+        }}
+        height={this.height}
+      >
+        {name && (
+          <NameContainer>
+            <Name>{name}</Name>
+          </NameContainer>
+        )}
+        <ContentContainer
+          className={collapsed ? 'collapsed' : 'uncollapsed'}
+          height={this.height}
+        >
+          <Position>{position}</Position>
+          {description}
+          {this.height > 200 && (
+            <CollapseBar
+              onKeyPress={this.handleKeyPress}
+              tabIndex="0"
+              className={collapsed && 'collapsed'}
+            />
+          )}
+        </ContentContainer>
+      </Container>
+    );
+  }
+}
 
 Credential.propTypes = {
   name: PropTypes.string,
   position: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
 };
 Credential.defaultProps = {
   name: '',

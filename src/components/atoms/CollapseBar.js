@@ -31,7 +31,7 @@ const CollapseBar = styled.div`
   }
   &.collapsed {
     :after {
-      transition: all 0.5s ease-in 0s;
+      transition: all 0.75s ease-in 0s;
       transform: rotate(180deg);
     }
   }

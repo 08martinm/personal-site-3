@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import Img from '../../../public/Graphic.svg';
+import Img from '../../../public/Graphic.png';
 
 const HeroGraphic = styled.img.attrs({
   src: Img,
   alt: 'MLM',
 })`
   display: block;
-  width: 100vw;
+  max-width: 100vw;
   max-height: 30vh;
 `;
 

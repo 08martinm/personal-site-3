@@ -20,6 +20,11 @@ module.exports = {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
       { use: ['style-loader', 'css-loader'], test: /\.(css|scss)$/ },
+      { test: /\.svg$/, loader: 'svg-sprite-loader' },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [{ loader: 'url-loader', options: { limit: 8192 } }],
+      },
     ],
   },
   resolve: { extensions: ['.js'] },
