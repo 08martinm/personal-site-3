@@ -57,12 +57,12 @@ const HeadShotContainer = styled.div`
 `;
 
 const Profile = props => (
-  <Container {...props}>
+  <Container id="Profile" {...props}>
     <Title>Profile</Title>
     <HR />
     <TagLine spaced>
-      <b>Tl;dr</b>:<br />I{`'`}m an avid learner intensely curious about how
-      software can connect people and eliminate inefficiencies.
+      <b>Tl;dr</b>:<br />I{`'`}m a full-stack software engineer working at the
+      intersection of finance and technology.
     </TagLine>
     <Row>
       <Section1>

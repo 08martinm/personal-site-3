@@ -5,6 +5,10 @@ import _times from 'lodash/times';
 import _map from 'lodash/map';
 import Star from '../atoms/Star';
 import P from '../atoms/P';
+import theme from '../../theme';
+
+const { colors } = theme;
+const { DARK_GRAY, LIGHT_GRAY } = colors;
 
 const Container = styled.div`
   display: flex;
@@ -12,6 +16,20 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 400px;
+  padding: 2.5px 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  &:hover {
+    span {
+      color: gold;
+      font-size: 31px;
+      transition: font-size 0.5s ease;
+    }
+    background-color: ${DARK_GRAY};
+    p {
+      color: ${LIGHT_GRAY};
+    }
+  }
 `;
 const StarContainer = styled.div`
   width: 150px;

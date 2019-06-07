@@ -126,7 +126,7 @@ class Skills extends Component {
       description: descriptionError,
     } = errors;
     return (
-      <Container {...this.props}>
+      <Container id="Contact" {...this.props}>
         <Title color="white">Contact</Title>
         <HR color="white" />
         <H3 color="white">Let{`'`}s Connect</H3>

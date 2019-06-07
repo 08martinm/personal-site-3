@@ -59,7 +59,7 @@ const Column = styled.div`
   padding: 0 30px;
 `;
 const Skills = props => (
-  <Container {...props}>
+  <Container id="Skills" {...props}>
     <Title>Skills</Title>
     <HR />
     <Row>

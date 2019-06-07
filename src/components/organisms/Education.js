@@ -20,7 +20,7 @@ const Title = styled(H1)`
 `;
 
 const Education = props => (
-  <Container {...props}>
+  <Container id="Education" {...props}>
     <Title>Education</Title>
     <HR />
     <Credential

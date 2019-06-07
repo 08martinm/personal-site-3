@@ -28,7 +28,7 @@ const PositionedDownArrow = styled(DownArrow)`
 `;
 
 const Hero = props => (
-  <Container {...props}>
+  <Container id="Hero" {...props}>
     <HeroGraphic />
     <PositionedH2 color="white">Hi, I{`'`}m Matthew L. Martin</PositionedH2>
     <HR color="white" />
