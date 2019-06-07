@@ -8,12 +8,13 @@ import theme from '../../theme';
 
 const { colors } = theme;
 const { LIGHTEST_GRAY } = colors;
-const BREAK_POINT = '1000px';
+const BREAK_POINT = '1050px';
 
 const Container = styled.div`
   background-color: ${LIGHTEST_GRAY};
   width: 100vw;
-  padding-bottom: 50px;
+  box-sizing: border-box;
+  padding: 0 20px 50px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;
@@ -61,15 +62,15 @@ const Profile = props => (
     <Title>Profile</Title>
     <HR />
     <TagLine spaced>
-      <b>Tl;dr</b>:<br />I{`'`}m a full-stack software engineer working at the
-      intersection of finance and technology.
+      <b>Tl;dr</b>:<br />I{`'`}m a full-stack software engineer on a mission to
+      transform the financial sector.
     </TagLine>
     <Row>
       <Section1>
         <AboutMeHeader>About Me</AboutMeHeader>
         <P spaced>
           I’m a full-stack software engineer who specializes in putting together
-          full-featured, data-heavy sites quickly. Between architecting
+          fully featured, data-heavy sites quickly. Between architecting
           databases, handling migrations, creating RESTful APIs, and managing
           front-end state, I focus on keeping the data that powers applications
           in a clean, approachable format.

@@ -12,7 +12,8 @@ const { LIGHTEST_GRAY } = colors;
 const Container = styled.div`
   background-color: ${LIGHTEST_GRAY};
   width: 100vw;
-  padding-bottom: 50px;
+  box-sizing: border-box;
+  padding: 0 20px 50px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;
@@ -27,12 +28,12 @@ const Education = props => (
       position="Self Learning"
       description={
         <P spaced>
-          I am profoundly grateful for the variety of educational opportunities
-          listed below; however, I would like to clearly state how much
-          self-study has been involved in my transition from liberal arts to
-          finance to technology to entrepreneurship. Intellectual curiosity has
-          long been one of my guiding principle – understanding the “how” and
-          the “why” underlying each task that I take on.
+          While I am profoundly grateful for the variety of educational
+          opportunities listed below, I{`'`}m more proud of the amount of
+          self-study required to transition from liberal arts to finance to
+          technology to entrepreneurship. Intellectual curiosity has long been
+          one of my guiding principles – understanding the “how” and the “why”
+          underpinning otherwise ordinary tasks.
         </P>
       }
     />

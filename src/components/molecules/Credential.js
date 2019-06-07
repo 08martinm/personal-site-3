@@ -12,6 +12,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
+  box-sizing: border-box;
   cursor: ${props => (props.height > 200 ? 'pointer' : 'auto')};
   padding-top: 20px;
 `;

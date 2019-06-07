@@ -15,7 +15,8 @@ const Container = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  max-width: 400px;
+  width: 80vw;
   padding: 2.5px 20px;
   box-sizing: border-box;
   border-radius: 5px;
