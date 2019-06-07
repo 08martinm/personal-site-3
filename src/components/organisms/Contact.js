@@ -19,6 +19,8 @@ const Container = styled.div`
   align-items: center;
   background-color: ${DARKEST_GRAY};
   width: 100vw;
+  box-sizing: border-box;
+  padding: 0 20px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;

@@ -15,6 +15,8 @@ const Container = styled(Column)`
   width: 100vw;
   height: 700px;
   max-height: 100vh;
+  box-sizing: border-box;
+  padding: 0 20px;
 `;
 const PositionedH2 = styled(H2)`
   padding-top: 60px;
