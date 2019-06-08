@@ -16,7 +16,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "boom": "^7.3.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-boom": "^3.0.0",
@@ -26,6 +30,7 @@
     "joi": "^14.3.1",
     "lodash": "^4.17.11",
     "morgan": "^1.9.1",
+    "pg": "^7.11.0",
     "polished": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -35,6 +40,7 @@
     "react-scrollspy": "^3.4.0",
     "react-stickynode": "^2.1.1",
     "rimraf": "^2.6.3",
+    "sequelize": "^5.8.7",
     "styled-components": "^4.2.1"
   },
   "devDependencies": {
@@ -55,6 +61,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",

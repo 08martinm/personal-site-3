@@ -33,7 +33,7 @@
     "prettier/prettier": ["error", { "trailingComma": "all" }],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.stories.js", "**/config/**"] }
+      { "devDependencies": ["**/*.stories.js", "./config/**"] }
     ]
   }
 }

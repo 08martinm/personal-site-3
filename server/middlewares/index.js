@@ -1,6 +1,6 @@
-import addDefaultMws from './default';
-import addDevMws from './development';
-import addProdMws from './production';
+import addDefaultMws from './config/default';
+import addDevMws from './config/development';
+import addProdMws from './config/production';
 import envVars from '../../config/envVars';
 
 const { NODE_ENV } = envVars;

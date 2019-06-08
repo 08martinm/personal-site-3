@@ -8,6 +8,7 @@ import P from '../atoms/P';
 import { Input, Password, TextArea } from '../atoms/Inputs';
 import Button from '../atoms/Button';
 import theme from '../../theme';
+import { postUser } from '../../api';
 
 const { colors } = theme;
 const { DARKEST_GRAY } = colors;
@@ -100,13 +101,21 @@ class Skills extends Component {
     return errors;
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     const errors = this.validate(this.state);
     if (_some(errors)) {
       return this.setState({ errors, showError: true });
     }
 
+    const { firstName, lastName, email, password, description } = this.state;
+    const userFields = { firstName, lastName, email, password, description };
+    try {
+      const { data } = await postUser(userFields);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
     return undefined;
   };
 
