@@ -62,8 +62,8 @@ const Profile = props => (
     <Title>Profile</Title>
     <HR />
     <TagLine spaced>
-      <b>Tl;dr</b>:<br />I{`'`}m a full-stack software engineer on a mission to
-      transform the financial sector.
+      <b>Tl;dr</b>:<br />I{`'`}m a full-stack software engineer exploring the
+      intersection of finance and technology.
     </TagLine>
     <Row>
       <Section1>
@@ -94,7 +94,9 @@ const Profile = props => (
           <br />
           <b>Location:</b>
           <br />
-          San Francisco Bay Area (soon to be Boston though!),
+          San Francisco Bay Area
+          <br />
+          (soon to be Boston!),
           <br />
           United States
           <br />

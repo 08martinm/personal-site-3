@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import boom from 'express-boom';
 import rateLimit from 'express-rate-limit';
-import API from '../API';
+import API from '../../API';
 
 const apiLimiter = rateLimit({
   windowMs: 1000 * 60 * 15, // reset every 15 mins
