@@ -10,10 +10,14 @@ import Login from '../components/pages/Login';
 // <PrivateRoute path="/schedule" component={RegisterPage} />
 // <Route component={PageNotFound} />
 
-const Routes = () => (
+const Routes = appProps => (
   <Switch>
-    <Route exact path="/" component={Home} />
-    <Route exact path="/login" component={Login} />
+    <Route exact path="/" render={props => <Home {...props} {...appProps} />} />
+    <Route
+      exact
+      path="/login"
+      render={props => <Login {...props} {...appProps} />}
+    />
   </Switch>
 );
 

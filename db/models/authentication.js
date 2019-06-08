@@ -50,7 +50,6 @@ module.exports = (sequelize, DataTypes) => {
 
   Authentication.associate = models => {
     const { User } = models;
-
     Authentication.belongsTo(User, { foreignKey: 'userId' });
   };
 

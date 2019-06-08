@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes, { instanceOf } from 'prop-types';
+import { Cookies, withCookies } from 'react-cookie';
+import { Redirect } from 'react-router-dom';
 import _some from 'lodash/some';
 import Navbar from '../molecules/Navbar';
 import { H1 } from '../atoms/Headers';
@@ -10,6 +13,7 @@ import P from '../atoms/P';
 import { Link } from '../atoms/Links';
 import { loginAPI } from '../../api';
 import theme from '../../theme';
+import { COOKIE_NAME, COOKIE_VALUE } from '../../../common/cookie';
 
 const { colors } = theme;
 const { DARK_GRAY, LIGHT_GRAY } = colors;
@@ -55,6 +59,7 @@ class Login extends Component {
     password: '',
     showError: false,
     errors: {},
+    success: false,
   };
 
   handleChange = field => e => {
@@ -92,9 +97,11 @@ class Login extends Component {
     }
 
     const { email, password } = this.state;
+    const { cookies } = this.props;
     try {
-      const { data } = await loginAPI({ email, password });
-      console.log(data);
+      await loginAPI({ email, password });
+      cookies.set(COOKIE_NAME, COOKIE_VALUE);
+      this.setState({ success: true });
     } catch (error) {
       console.log(error);
     }
@@ -102,11 +109,15 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password, showError, errors } = this.state;
+    const { email, password, showError, errors, success } = this.state;
     const { email: emailError, password: passwordError } = errors;
+    const { isLoggedIn } = this.props;
+    if (success) {
+      return <Redirect to="/" />;
+    }
     return (
       <Container>
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn} />
         <Title>Log In</Title>
         <StyledHR />
         <Form onSubmit={this.handleSubmit}>
@@ -149,4 +160,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  cookies: instanceOf(Cookies).isRequired,
+};
+
+export default withCookies(Login);
