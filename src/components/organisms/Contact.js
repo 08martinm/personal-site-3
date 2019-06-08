@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import _some from 'lodash/some';
+import { Redirect } from 'react-router-dom';
 import { H1, H3 } from '../atoms/Headers';
 import HR from '../atoms/HR';
 import LI from '../atoms/LI';
@@ -57,6 +58,7 @@ class Skills extends Component {
     description: '',
     showError: false,
     errors: {},
+    success: false,
   };
 
   handleChange = field => e => {
@@ -111,8 +113,8 @@ class Skills extends Component {
     const { firstName, lastName, email, password, description } = this.state;
     const userFields = { firstName, lastName, email, password, description };
     try {
-      const { data } = await postUser(userFields);
-      console.log(data);
+      await postUser(userFields);
+      this.setState({ success: true });
     } catch (error) {
       console.log(error);
     }
@@ -128,6 +130,7 @@ class Skills extends Component {
       description,
       showError,
       errors,
+      success,
     } = this.state;
     const {
       firstName: firstNameError,
@@ -136,6 +139,10 @@ class Skills extends Component {
       password: passwordError,
       description: descriptionError,
     } = errors;
+
+    if (success) {
+      return <Redirect to="/" />;
+    }
     return (
       <Container id="Contact" {...this.props}>
         <Title color="white">Contact</Title>

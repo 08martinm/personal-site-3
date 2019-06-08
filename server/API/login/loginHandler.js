@@ -1,4 +1,5 @@
 import { promisifedAuthenticate, promisifiedLogin } from './passport';
+import { COOKIE_NAME, COOKIE_VALUE } from '../../../common/cookie';
 
 async function loginHandler(req, res) {
   /* authenticate */
@@ -6,7 +7,7 @@ async function loginHandler(req, res) {
   try {
     const user = await promisifedAuthenticate(req, res); // get authenticated user
     await promisifiedLogin(req, user);
-    res.cookie('MLM-Authorized', true);
+    res.cookie(COOKIE_NAME, COOKIE_VALUE);
     return res.status(200).json(user.get({ plain: true }));
   } catch (error) {
     res.clearCookie('unauthorized');
