@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import Img from '../../../public/MLM_Logo.svg';
+import Img from '../../../public/MLM_Logo.png';
 
 const Logo = styled.img.attrs({
   src: Img,
   alt: 'Logo',
 })`
   display: block;
-  height: 60px;
+  max-width: 40vw;
+  max-height: 60px;
 `;
 
 export default Logo;
