@@ -1,6 +1,7 @@
 import React from 'react';
 import Sticky from 'react-stickynode';
 import styled from 'styled-components';
+import Navbar from '../molecules/Navbar';
 import Hero from '../organisms/Hero';
 import Profile from '../organisms/Profile';
 import Jobs from '../organisms/Jobs';
@@ -18,6 +19,7 @@ const PageContainer = styled.div`
 
 const Home = props => (
   <PageContainer {...props}>
+    <Navbar />
     <Hero />
     <Sticky enabled top={50}>
       <ScrollNav />

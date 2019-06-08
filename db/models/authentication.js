@@ -40,6 +40,13 @@ module.exports = (sequelize, DataTypes) => {
   Authentication.prototype.generateExpirationDate = function generateExpirationDate() {
     return new Date(Date.now() + MS_IN_ONE_DAY);
   };
+  Authentication.prototype.comparePassword = async function comparePassword(
+    password,
+  ) {
+    const userAuth = this;
+    const hashedPassword = await hashPassword(password);
+    return hashedPassword === userAuth.password;
+  };
 
   Authentication.associate = models => {
     const { User } = models;
@@ -47,19 +54,19 @@ module.exports = (sequelize, DataTypes) => {
     Authentication.belongsTo(User, { foreignKey: 'userId' });
   };
 
-  Authentication.beforeCreate(async user => {
-    await user.encryptPass();
+  Authentication.beforeCreate(async userAuth => {
+    await userAuth.encryptPass();
     /* eslint-disable no-param-reassign */
-    user.signupToken = await user.generateToken();
-    user.signupTokenExpiration = user.generateExpirationDate();
+    userAuth.signupToken = await userAuth.generateToken();
+    userAuth.signupTokenExpiration = userAuth.generateExpirationDate();
     /* eslint-enable no-param-reassign */
   });
 
-  Authentication.beforeUpdate(user => {
-    if (user.changed('password')) {
-      return user.encryptPass();
+  Authentication.beforeUpdate(userAuth => {
+    if (userAuth.changed('password')) {
+      return userAuth.encryptPass();
     }
-    return user;
+    return userAuth;
   });
 
   return Authentication;

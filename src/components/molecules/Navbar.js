@@ -8,6 +8,9 @@ const { colors } = theme;
 const { BLACK } = colors;
 
 const Container = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 2;
   background-color: ${BLACK};
   width: 100%;
   min-width: 90vw;

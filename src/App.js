@@ -1,6 +1,14 @@
 import React from 'react';
-import Home from './components/pages/Home';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
+import Routes from './routes';
 
-const App = () => <Home />;
+const HotReloadedRoutes = hot(module)(Routes);
+
+const App = () => (
+  <Router>
+    <HotReloadedRoutes />
+  </Router>
+);
 
 export default App;

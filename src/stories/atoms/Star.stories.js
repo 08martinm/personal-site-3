@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { text, boolean } from '@storybook/addon-knobs';
 import Star from '../../components/atoms/Star';
 
 const Background = styled.div`
@@ -12,9 +11,6 @@ const Background = styled.div`
 
 storiesOf('Atoms', module).add('Star', () => (
   <Background>
-    <Star
-      error={boolean('error', false)}
-      placeholder={text('placeholder', 'How can I help you?')}
-    />
+    <Star />
   </Background>
 ));
