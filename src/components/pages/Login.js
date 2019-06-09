@@ -161,9 +161,7 @@ class Login extends Component {
             value={password}
             onChange={this.handleChange('password')}
           />
-          <Button status={showError && (_some(errors) ? 'error' : 'success')}>
-            Send
-          </Button>
+          <Button status={showError && (_some(errors) && 'error')}>Send</Button>
         </Form>
         <Text>
           Forgot your password?
