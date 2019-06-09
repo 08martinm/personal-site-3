@@ -13,6 +13,7 @@ import {
   MS_IN_ONE_SECOND,
   SECONDS_IN_ONE_MINUTE,
 } from '../../../common/timeConstants';
+import errorHandlerMiddleware from '../errorHandler';
 
 const { SESSION_SECRET, USE_SSL, CONSTRING } = envVars;
 
@@ -52,6 +53,7 @@ const addDefaultMiddlewares = app => {
   app.use(bodyParser.json());
   app.use('/api/', apiLimiter);
   app.use('/api', API);
+  app.use(errorHandlerMiddleware);
   return app;
 };
 

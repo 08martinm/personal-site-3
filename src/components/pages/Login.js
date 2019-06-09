@@ -4,6 +4,7 @@ import PropTypes, { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom';
 import _some from 'lodash/some';
+import _get from 'lodash/get';
 import Navbar from '../molecules/Navbar';
 import { H1 } from '../atoms/Headers';
 import HR from '../atoms/HR';
@@ -16,7 +17,7 @@ import theme from '../../theme';
 import { COOKIE_NAME, COOKIE_VALUE } from '../../../common/cookie';
 
 const { colors } = theme;
-const { DARK_GRAY, LIGHT_GRAY } = colors;
+const { DARK_GRAY, LIGHT_GRAY, ERROR } = colors;
 
 const Container = styled.div`
   display: flex;
@@ -52,6 +53,11 @@ const Text = styled(P)`
   color: ${LIGHT_GRAY};
   text-align: center;
 `;
+const ErrorText = styled(P)`
+  color: ${ERROR};
+  text-align: center;
+  margin: 30px 0 0;
+`;
 
 class Login extends Component {
   state = {
@@ -60,6 +66,7 @@ class Login extends Component {
     showError: false,
     errors: {},
     success: false,
+    serverError: '',
   };
 
   handleChange = field => e => {
@@ -103,13 +110,25 @@ class Login extends Component {
       cookies.set(COOKIE_NAME, COOKIE_VALUE);
       this.setState({ success: true });
     } catch (error) {
-      console.log(error);
+      const message = _get(
+        error,
+        'response.data.message',
+        'Oops! We encountered an error. Please try again.',
+      );
+      this.setState({ serverError: message, showError: true });
     }
     return undefined;
   };
 
   render() {
-    const { email, password, showError, errors, success } = this.state;
+    const {
+      email,
+      password,
+      showError,
+      errors,
+      success,
+      serverError,
+    } = this.state;
     const { email: emailError, password: passwordError } = errors;
     const { isLoggedIn } = this.props;
     if (success) {
@@ -120,6 +139,7 @@ class Login extends Component {
         <Navbar isLoggedIn={isLoggedIn} />
         <Title>Log In</Title>
         <StyledHR />
+        {serverError && <ErrorText>{serverError}</ErrorText>}
         <Form onSubmit={this.handleSubmit}>
           <Input
             id="email"

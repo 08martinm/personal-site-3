@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import _some from 'lodash/some';
-import { Redirect } from 'react-router-dom';
+import _get from 'lodash/get';
 import { H1, H3 } from '../atoms/Headers';
 import HR from '../atoms/HR';
 import LI from '../atoms/LI';
@@ -12,7 +12,7 @@ import theme from '../../theme';
 import { postUser } from '../../api';
 
 const { colors } = theme;
-const { DARKEST_GRAY } = colors;
+const { DARKEST_GRAY, ERROR, SUCCESS } = colors;
 
 const Container = styled.div`
   display: flex;
@@ -47,6 +47,14 @@ const OL = styled.ol`
 const TagLine = styled(P)`
   width: 80%;
   max-width: 600px;
+`;
+const ErrorText = styled(P)`
+  color: ${ERROR};
+  text-align: center;
+  margin: 30px 0 0;
+`;
+const SuccessText = styled(ErrorText)`
+  color: ${SUCCESS};
 `;
 
 class Skills extends Component {
@@ -114,9 +122,14 @@ class Skills extends Component {
     const userFields = { firstName, lastName, email, password, description };
     try {
       await postUser(userFields);
-      this.setState({ success: true });
+      this.setState({ success: true, serverError: false });
     } catch (error) {
-      console.log(error);
+      const message = _get(
+        error,
+        'response.data.message',
+        'Oops! We encountered an error. Please try again.',
+      );
+      this.setState({ serverError: message, success: false });
     }
     return undefined;
   };
@@ -131,6 +144,7 @@ class Skills extends Component {
       showError,
       errors,
       success,
+      serverError,
     } = this.state;
     const {
       firstName: firstNameError,
@@ -140,9 +154,6 @@ class Skills extends Component {
       description: descriptionError,
     } = errors;
 
-    if (success) {
-      return <Redirect to="/" />;
-    }
     return (
       <Container id="Contact" {...this.props}>
         <Title color="white">Contact</Title>
@@ -161,6 +172,12 @@ class Skills extends Component {
             chat; I look forward to meeting you!
           </LI>
         </OL>
+        {serverError && <ErrorText>{serverError}</ErrorText>}
+        {success && (
+          <SuccessText>
+            Account created! Check your email for next steps.
+          </SuccessText>
+        )}
         <Form onSubmit={this.handleSubmit}>
           <Input
             id="firstName"
