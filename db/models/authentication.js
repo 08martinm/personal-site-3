@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 import { MS_IN_ONE_DAY } from '../../common/timeConstants';
 import hashPassword from '../utils/hashPassword';
 
@@ -44,8 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     password,
   ) {
     const userAuth = this;
-    const hashedPassword = await hashPassword(password);
-    return hashedPassword === userAuth.password;
+    return bcrypt.compare(password, userAuth.password);
   };
 
   Authentication.associate = models => {

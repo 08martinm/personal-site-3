@@ -24,12 +24,12 @@ passport.use(
         }
         // 2. Compare password
         const userAuth = await Authentication.findByPk(user.id);
-        const passwordsMatch = userAuth.comparePassword(password);
+        const passwordsMatch = await userAuth.comparePassword(password);
         if (!passwordsMatch) {
-          throw Boom.badRequest(
-            `Received wrong password for user with email ${email}`,
-            { type: WRONG_PASSWORD, boomError: 'badRequest' },
-          );
+          throw Boom.badRequest(`Invalid password for ${email}`, {
+            type: WRONG_PASSWORD,
+            boomError: 'badRequest',
+          });
         }
         // 3. Return null error and user
         return done(null, user);
