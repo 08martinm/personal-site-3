@@ -2,7 +2,11 @@ import passport from 'passport';
 import Local from 'passport-local';
 import Boom from 'boom';
 import _get from 'lodash/get';
-import { USER_NOT_FOUND, WRONG_PASSWORD } from '../../../common/errorTypes';
+import {
+  USER_NOT_FOUND,
+  WRONG_PASSWORD,
+  EMAIL_VERIFICATION_NEEDED,
+} from '../../../common/errorTypes';
 import { User, Authentication } from '../../../db/models';
 
 const LocalStrategy = Local.Strategy;
@@ -31,7 +35,17 @@ passport.use(
             boomError: 'badRequest',
           });
         }
-        // 3. Return null error and user
+        // 3. Confirm email has been verified
+        if (!userAuth.emailVerified) {
+          throw Boom.badRequest(
+            `Please verify your email by clicking on the link emailed to ${email}`,
+            {
+              type: EMAIL_VERIFICATION_NEEDED,
+              boomError: 'badRequest',
+            },
+          );
+        }
+        // 4. Return null error and user
         return done(null, user);
       } catch (error) {
         return done(error);

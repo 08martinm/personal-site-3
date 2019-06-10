@@ -29,7 +29,7 @@ const Title = styled(H1)`
 `;
 const SubTitle = styled(H2)`
   margin: 30px 0 0;
-  padding: 0;
+  padding: 0 25px;
   color: ${LIGHTEST_GRAY};
 `;
 const NextSteps = styled(H3)`
