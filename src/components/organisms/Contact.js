@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 import _some from 'lodash/some';
 import _get from 'lodash/get';
 import { H1, H3 } from '../atoms/Headers';
@@ -12,7 +13,7 @@ import theme from '../../theme';
 import { postUser } from '../../api';
 
 const { colors } = theme;
-const { DARKEST_GRAY, ERROR, SUCCESS } = colors;
+const { DARKEST_GRAY, ERROR } = colors;
 
 const Container = styled.div`
   display: flex;
@@ -52,9 +53,6 @@ const ErrorText = styled(P)`
   color: ${ERROR};
   text-align: center;
   margin: 30px 0 0;
-`;
-const SuccessText = styled(ErrorText)`
-  color: ${SUCCESS};
 `;
 
 class Skills extends Component {
@@ -154,6 +152,17 @@ class Skills extends Component {
       description: descriptionError,
     } = errors;
 
+    if (success) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/signed-up',
+            state: { email },
+          }}
+        />
+      );
+    }
+
     return (
       <Container id="Contact" {...this.props}>
         <Title color="white">Contact</Title>
@@ -173,11 +182,6 @@ class Skills extends Component {
           </LI>
         </OL>
         {serverError && <ErrorText>{serverError}</ErrorText>}
-        {success && (
-          <SuccessText>
-            Account created! Check your email for next steps.
-          </SuccessText>
-        )}
         <Form onSubmit={this.handleSubmit}>
           <Input
             id="firstName"
