@@ -20,6 +20,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
       },
+      emailVerified: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
