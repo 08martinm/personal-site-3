@@ -3,6 +3,7 @@ import { Route, Switch /* , Redirect */ } from 'react-router-dom';
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import NotFound from '../components/pages/NotFound';
+import SignupSuccess from '../components/pages/SignupSuccess';
 // import ForgotPassword from '../components/pages/ForgotPassword';
 // import ResetPassword from '../components/pages/ResetPassword';
 // import PrivateRoute from './PrivateRoute';
@@ -17,6 +18,7 @@ const Routes = appProps => (
       path="/login"
       render={props => <Login {...props} {...appProps} />}
     />
+    <Route exact path="/signed-up" component={SignupSuccess} />
     <Route component={NotFound} />
   </Switch>
 );
