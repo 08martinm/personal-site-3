@@ -1,7 +1,11 @@
 import Boom from 'boom';
 import { User, Authentication } from '../../../db/models';
 import sendVerificationEmail from '../../emails/sendVerificationEmail';
-import { DUPLICATE_EMAIL } from '../../../common/errorTypes';
+import {
+  BAD_TOKEN,
+  TOKEN_EXPIRED,
+  DUPLICATE_EMAIL,
+} from '../../../common/errorTypes';
 
 export async function getUser(req, res) {
   const userId = req.session.passport.user;
@@ -35,6 +39,36 @@ export async function postUser(req, res, next) {
       signupToken,
     });
     res.json('Account created');
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function putPassword(req, res, next) {
+  try {
+    const { password, forgotPasswordToken } = req.body;
+    const auth = await Authentication.findOne({
+      where: { forgotPasswordToken },
+    });
+    if (!auth) {
+      throw Boom.badRequest(`Bad Token`, {
+        forgotPasswordToken,
+        type: BAD_TOKEN,
+      });
+    }
+    console.log('auth is', auth.dataValues.forgotPasswordExpiration);
+    if (auth.dataValues.forgotPasswordExpiration.getTime() < Date.now()) {
+      throw Boom.badRequest(`Received expired token ${forgotPasswordToken}`, {
+        type: TOKEN_EXPIRED,
+        boomError: 'badRequest',
+      });
+    }
+    auth.forgotPasswordToken = null;
+    auth.forgotPasswordExpiration = null;
+    auth.password = password;
+    await auth.save();
+    const user = User.findByPk(auth.userId);
+    res.status(200).json(user.get({ plain: true }));
   } catch (error) {
     next(error);
   }

@@ -26,6 +26,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: true,
       },
+      forgotPasswordToken: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      forgotPasswordExpiration: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
       emailVerified: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -51,6 +59,13 @@ module.exports = (sequelize, DataTypes) => {
   ) {
     const userAuth = this;
     return bcrypt.compare(password, userAuth.password);
+  };
+  Authentication.prototype.createForgotPasswordToken = async function createForgotPasswordToken() {
+    const userAuth = this;
+    userAuth.forgotPasswordToken = await userAuth.generateToken();
+    userAuth.forgotPasswordExpiration = userAuth.generateExpirationDate();
+    await userAuth.save();
+    return userAuth.forgotPasswordToken;
   };
 
   Authentication.associate = models => {

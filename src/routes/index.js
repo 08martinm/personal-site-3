@@ -8,9 +8,11 @@ import VerifyEmail from '../components/pages/VerifyEmail';
 import VerifyError from '../components/pages/VerifyError';
 import Calendar from '../components/pages/Calendar';
 import FAQ from '../components/pages/FAQ';
-// import ForgotPassword from '../components/pages/ForgotPassword';
-// import ResetPassword from '../components/pages/ResetPassword';
+import ForgotPassword from '../components/pages/ForgotPassword';
+import ForgotPasswordSuccess from '../components/pages/ForgotPasswordSuccess';
+import ResetPassword from '../components/pages/ResetPassword';
 import PrivateRoute from './PrivateRoute';
+import ResetPasswordSuccess from '../components/pages/ResetPasswordSuccess';
 
 const Routes = appProps => (
   <Switch>
@@ -25,6 +27,18 @@ const Routes = appProps => (
     <Route exact path="/verify/error" component={VerifyError} />
     <Route path="/verify-email" component={VerifyEmail} />
     <PrivateRoute exact path="/schedule" component={Calendar} />
+    <Route exact path="/forgot-password" component={ForgotPassword} />
+    <Route
+      exact
+      path="/forgot-password/success"
+      component={ForgotPasswordSuccess}
+    />
+    <Route
+      exact
+      path="/reset-password/success"
+      component={ResetPasswordSuccess}
+    />
+    <Route path="/reset-password" component={ResetPassword} />
     <Route component={NotFound} />
   </Switch>
 );
