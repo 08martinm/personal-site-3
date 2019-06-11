@@ -17,10 +17,8 @@ async function forgotPasswordHandler(req, res, next) {
     }
     const auth = await Authentication.findByPk(user.id);
     // 2. Create password-reset token/expiration
-    console.log('here 1');
     const forgotPasswordToken = await auth.createForgotPasswordToken();
     // 3. Send Forgot-Password email
-    console.log('here 2');
     await sendForgotPasswordEmail({
       hostname: req.get('host'),
       firstName: user.dataValues.firstName,

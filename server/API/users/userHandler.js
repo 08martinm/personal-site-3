@@ -59,7 +59,6 @@ export async function putPassword(req, res, next) {
         },
       );
     }
-    console.log('auth is', auth.dataValues.forgotPasswordExpiration);
     if (auth.dataValues.forgotPasswordExpiration.getTime() < Date.now()) {
       throw Boom.badRequest(`Received expired token ${forgotPasswordToken}`, {
         type: TOKEN_EXPIRED,
