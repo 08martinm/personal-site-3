@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import _constant from 'lodash/constant';
 
-const postUserSchema = Joi.object().keys({
+export const postUserSchema = Joi.object().keys({
   firstName: Joi.string()
     .label('First Name')
     .required(),
@@ -29,4 +29,20 @@ const postUserSchema = Joi.object().keys({
     .required(),
 });
 
-export default postUserSchema;
+export const putPasswordSchema = Joi.object().keys({
+  password: Joi.string()
+    .label('Password')
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d`~!@#$%^&*()\-_=+[{\]};:'",<.>/?]{8,}/,
+      'valid password',
+    )
+    .error(
+      _constant({
+        template: 'does not meet the requirements',
+      }),
+    )
+    .required(),
+  forgotPasswordToken: Joi.string()
+    .label('Token')
+    .required(),
+});
