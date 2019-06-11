@@ -7,6 +7,7 @@ import SignupSuccess from '../components/pages/SignupSuccess';
 import VerifyEmail from '../components/pages/VerifyEmail';
 import VerifyError from '../components/pages/VerifyError';
 import Calendar from '../components/pages/Calendar';
+import FAQ from '../components/pages/FAQ';
 // import ForgotPassword from '../components/pages/ForgotPassword';
 // import ResetPassword from '../components/pages/ResetPassword';
 import PrivateRoute from './PrivateRoute';
@@ -19,6 +20,7 @@ const Routes = appProps => (
       path="/login"
       render={props => <Login {...props} {...appProps} />}
     />
+    <Route exact path="/faq" component={FAQ} />
     <Route exact path="/signed-up" component={SignupSuccess} />
     <Route exact path="/verify/error" component={VerifyError} />
     <Route path="/verify-email" component={VerifyEmail} />
