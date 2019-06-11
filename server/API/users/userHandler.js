@@ -51,10 +51,13 @@ export async function putPassword(req, res, next) {
       where: { forgotPasswordToken },
     });
     if (!auth) {
-      throw Boom.badRequest(`Bad Token`, {
-        forgotPasswordToken,
-        type: BAD_TOKEN,
-      });
+      throw Boom.badRequest(
+        `Bad token! Submit another request to reset your password.`,
+        {
+          forgotPasswordToken,
+          type: BAD_TOKEN,
+        },
+      );
     }
     console.log('auth is', auth.dataValues.forgotPasswordExpiration);
     if (auth.dataValues.forgotPasswordExpiration.getTime() < Date.now()) {

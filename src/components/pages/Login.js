@@ -166,7 +166,7 @@ class Login extends Component {
         <Text>
           Forgot your password?
           <br />
-          <Link to="/reset">Reset password here.</Link>
+          <Link to="/forgot-password">Reset password here.</Link>
         </Text>
         <Text>
           Haven{`'`}t created an account?
