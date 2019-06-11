@@ -6,11 +6,10 @@ import NotFound from '../components/pages/NotFound';
 import SignupSuccess from '../components/pages/SignupSuccess';
 import VerifyEmail from '../components/pages/VerifyEmail';
 import VerifyError from '../components/pages/VerifyError';
+import Calendar from '../components/pages/Calendar';
 // import ForgotPassword from '../components/pages/ForgotPassword';
 // import ResetPassword from '../components/pages/ResetPassword';
-// import PrivateRoute from './PrivateRoute';
-
-// <PrivateRoute path="/schedule" component={RegisterPage} />
+import PrivateRoute from './PrivateRoute';
 
 const Routes = appProps => (
   <Switch>
@@ -23,6 +22,7 @@ const Routes = appProps => (
     <Route exact path="/signed-up" component={SignupSuccess} />
     <Route exact path="/verify/error" component={VerifyError} />
     <Route path="/verify-email" component={VerifyEmail} />
+    <PrivateRoute exact path="/schedule" component={Calendar} />
     <Route component={NotFound} />
   </Switch>
 );
