@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from '../../theme';
 import P from '../atoms/P';
-import LinkedIn from '../../../public/LinkedIN.svg';
+import LinkedIn from '../../../public/LinkedIN.png';
 
 const { colors } = theme;
 const { LIGHT_GRAY } = colors;
