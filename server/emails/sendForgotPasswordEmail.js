@@ -21,8 +21,6 @@ export default async function sendForgotPasswordEmail({
       url: `http://${hostname}/reset-password/${forgotPasswordToken}`,
     },
   };
-  console.log('bout to send');
   await sgMail.send(msg);
-  console.log('sent');
   return undefined;
 }
