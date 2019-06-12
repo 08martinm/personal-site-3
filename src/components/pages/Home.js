@@ -1,6 +1,5 @@
 import React from 'react';
 import Sticky from 'react-stickynode';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Navbar from '../molecules/Navbar';
 import Hero from '../organisms/Hero';
@@ -18,9 +17,9 @@ const PageContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const Home = ({ isLoggedIn, ...props }) => (
+const Home = props => (
   <PageContainer {...props}>
-    <Navbar isLoggedIn={isLoggedIn} />
+    <Navbar />
     <Hero />
     <Sticky enabled top={50}>
       <ScrollNav />
@@ -32,9 +31,5 @@ const Home = ({ isLoggedIn, ...props }) => (
     <Contact />
   </PageContainer>
 );
-
-Home.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-};
 
 export default Home;

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import PropTypes, { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 import theme from '../../theme';
 import Logo from '../atoms/Logo';
 import { NavLink } from '../atoms/Links';
-import { logoutAPI } from '../../api';
 import { COOKIE_NAME } from '../../../common/cookie';
+import { logoutAction } from '../../store/userDuck';
 
 const { colors } = theme;
 const { BLACK } = colors;
@@ -37,10 +38,11 @@ const LinkContainer = styled.div`
   margin-right: 20px;
 `;
 
-const Navbar = ({ isLoggedIn, cookies, ...props }) => {
-  const handleLogout = () => {
+const Navbar = ({ isLoggedIn, logout, cookies, ...props }) => {
+  const handleLogout = async () => {
     cookies.remove(COOKIE_NAME);
-    logoutAPI();
+    await logout();
+    window.location.reload();
   };
   return (
     <Container {...props}>
@@ -63,11 +65,22 @@ const Navbar = ({ isLoggedIn, cookies, ...props }) => {
 };
 
 Navbar.propTypes = {
-  isLoggedIn: PropTypes.bool,
+  isLoggedIn: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
   cookies: instanceOf(Cookies).isRequired,
 };
-Navbar.defaultProps = {
-  isLoggedIn: false,
-};
 
-export default withCookies(Navbar);
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn,
+});
+const mapDispatchToProps = dispatch => ({
+  logout: () =>
+    new Promise((resolve, reject) =>
+      dispatch(logoutAction({ resolve, reject })),
+    ),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withCookies(Navbar));

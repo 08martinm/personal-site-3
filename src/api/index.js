@@ -14,7 +14,7 @@ export const postUser = ({
     password,
     description,
   });
-export const getUser = () => axios.get(`/api/users`);
+export const getUserAPI = () => axios.get(`/api/users`);
 export const loginAPI = ({ email, password }) =>
   axios.post(`/api/login`, { email, password });
 export const logoutAPI = () => axios.post(`/api/logout`);
