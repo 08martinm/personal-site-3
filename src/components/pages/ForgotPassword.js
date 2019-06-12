@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import _some from 'lodash/some';
 import _get from 'lodash/get';
@@ -114,13 +113,12 @@ class ForgotPassword extends Component {
   render() {
     const { email, showError, errors, success, serverError } = this.state;
     const { email: emailError } = errors;
-    const { isLoggedIn } = this.props;
     if (success) {
       return <Redirect to="/forgot-password/success" />;
     }
     return (
       <Container>
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar />
         <Title>Forgot Password</Title>
         <StyledHR />
         {serverError && <ErrorText>{serverError}</ErrorText>}
@@ -151,9 +149,5 @@ class ForgotPassword extends Component {
     );
   }
 }
-
-ForgotPassword.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-};
 
 export default ForgotPassword;

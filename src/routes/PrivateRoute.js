@@ -1,15 +1,21 @@
 import React from 'react';
-import propTypes, { instanceOf } from 'prop-types';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { Cookies, withCookies } from 'react-cookie';
-import { COOKIE_NAME, COOKIE_VALUE } from '../../common/cookie';
 
-const PrivateRoute = ({ component: Component, cookies, ...otherProps }) => {
-  const isLoggedIn = cookies.get(COOKIE_NAME) === COOKIE_VALUE;
+const PrivateRoute = ({
+  component: Component,
+  isLoggedIn,
+  fetchingUser,
+  ...otherProps
+}) => {
   return (
     <Route
       {...otherProps}
       render={props => {
+        if (fetchingUser) {
+          return 'One sec';
+        }
         if (!isLoggedIn) {
           return (
             <Redirect
@@ -28,13 +34,17 @@ const PrivateRoute = ({ component: Component, cookies, ...otherProps }) => {
 };
 
 PrivateRoute.propTypes = {
-  component: propTypes.oneOfType([propTypes.func, propTypes.node]),
-  isLoggedIn: propTypes.bool,
-  cookies: instanceOf(Cookies).isRequired,
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  isLoggedIn: PropTypes.bool.isRequired,
+  fetchingUser: PropTypes.bool.isRequired,
 };
 PrivateRoute.defaultProps = {
   component: null,
-  isLoggedIn: false,
 };
 
-export default withCookies(PrivateRoute);
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn,
+  fetchingUser: state.user.fetchingUser,
+});
+
+export default connect(mapStateToProps)(PrivateRoute);

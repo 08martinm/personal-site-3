@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import PropTypes, { instanceOf } from 'prop-types';
-import { Cookies, withCookies } from 'react-cookie';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import _some from 'lodash/some';
 import _get from 'lodash/get';
 import Navbar from '../molecules/Navbar';
@@ -12,9 +12,8 @@ import { Input } from '../atoms/Inputs';
 import Button from '../atoms/Button';
 import P from '../atoms/P';
 import { Link } from '../atoms/Links';
-import { loginAPI } from '../../api';
+import { loginAction } from '../../store/userDuck';
 import theme from '../../theme';
-import { COOKIE_NAME, COOKIE_VALUE } from '../../../common/cookie';
 
 const { colors } = theme;
 const { DARK_GRAY, LIGHT_GRAY, ERROR } = colors;
@@ -104,10 +103,9 @@ class Login extends Component {
     }
 
     const { email, password } = this.state;
-    const { cookies } = this.props;
+    const { login } = this.props;
     try {
-      await loginAPI({ email, password });
-      cookies.set(COOKIE_NAME, COOKIE_VALUE);
+      await login({ email, password });
       this.setState({ success: true });
     } catch (error) {
       const message = _get(
@@ -130,13 +128,12 @@ class Login extends Component {
       serverError,
     } = this.state;
     const { email: emailError, password: passwordError } = errors;
-    const { isLoggedIn } = this.props;
     if (success) {
       return <Redirect to="/" />;
     }
     return (
       <Container>
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar />
         <Title>Log In</Title>
         <StyledHR />
         {serverError && <ErrorText>{serverError}</ErrorText>}
@@ -179,8 +176,17 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  cookies: instanceOf(Cookies).isRequired,
+  login: PropTypes.func.isRequired,
 };
 
-export default withCookies(Login);
+const mapDispatchToProps = dispatch => ({
+  login: data =>
+    new Promise((resolve, reject) =>
+      dispatch(loginAction(data, resolve, reject)),
+    ),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Login);

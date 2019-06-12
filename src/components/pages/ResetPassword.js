@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import _split from 'lodash/split';
 import _some from 'lodash/some';
@@ -142,13 +141,12 @@ class ResetPassword extends Component {
       password: passwordError,
       confirmPassword: confirmPasswordError,
     } = errors;
-    const { isLoggedIn } = this.props;
     if (success) {
       return <Redirect to="/reset-password/success" />;
     }
     return (
       <Container>
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar />
         <Title>Reset Password</Title>
         <StyledHR />
         {serverError && <ErrorText>{serverError}</ErrorText>}
@@ -185,9 +183,5 @@ class ResetPassword extends Component {
     );
   }
 }
-
-ResetPassword.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-};
 
 export default ResetPassword;
