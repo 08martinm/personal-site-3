@@ -8,10 +8,10 @@ import Credential from '../molecules/Credential';
 import theme from '../../theme';
 
 const { colors } = theme;
-const { DARKEST_GRAY, LIGHT_GRAY, BLUE } = colors;
+const { DARK_GRAY, LIGHT_GRAY, BLUE } = colors;
 
 const Container = styled.div`
-  background-color: ${DARKEST_GRAY};
+  background-color: ${DARK_GRAY};
   padding: 60px 0;
 `;
 const Title = styled(H1)`
@@ -29,6 +29,7 @@ const StyledCredential = styled(Credential)`
   h4 {
     color: ${LIGHT_GRAY};
   }
+  padding: 0 20px;
 `;
 const Link = styled.a`
   color: ${BLUE};
