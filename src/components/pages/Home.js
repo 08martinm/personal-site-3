@@ -19,7 +19,7 @@ const PageContainer = styled.div`
 
 const Home = props => (
   <PageContainer {...props}>
-    <Navbar />
+    <Navbar hideNav />
     <Hero />
     <Sticky enabled top={50}>
       <ScrollNav />
