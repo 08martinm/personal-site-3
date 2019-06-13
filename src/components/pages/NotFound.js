@@ -5,19 +5,11 @@ import P from '../atoms/P';
 import { Link } from '../atoms/Links';
 import { H1, H2 } from '../atoms/Headers';
 import theme from '../../theme';
+import { FullPageBackground } from '../atoms/Containers';
 
 const { colors } = theme;
-const { WHITE, DARKEST_GRAY } = colors;
+const { WHITE } = colors;
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  min-height: 100vh;
-  background-color: ${DARKEST_GRAY};
-`;
 const Img = styled.img.attrs({
   src: SkullAndCrossbones,
   alt: 'Skull and Crossbones',
@@ -36,14 +28,14 @@ const Text = styled(P)`
 `;
 
 const NotFound = props => (
-  <Container {...props}>
+  <FullPageBackground {...props}>
     <Img />
     <Headline color="white">Uh oh...</Headline>
     <Tagline color="white">We couldn{`'`}t find that page</Tagline>
     <Text>
       Click <Link to="/">here</Link> to go home
     </Text>
-  </Container>
+  </FullPageBackground>
 );
 
 export default NotFound;

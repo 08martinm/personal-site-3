@@ -5,16 +5,14 @@ import HR from '../atoms/HR';
 import P from '../atoms/P';
 import HeadShot from '../atoms/HeadShot';
 import theme from '../../theme';
+import { SectionContainer } from '../atoms/Containers';
 
 const { colors } = theme;
 const { LIGHTEST_GRAY } = colors;
 const BREAK_POINT = '1050px';
 
-const Container = styled.div`
+const Container = styled(SectionContainer)`
   background-color: ${LIGHTEST_GRAY};
-  width: 100vw;
-  box-sizing: border-box;
-  padding: 0 20px 50px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;

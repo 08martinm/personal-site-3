@@ -6,20 +6,11 @@ import { Link } from '../atoms/Links';
 import HR from '../atoms/HR';
 import P from '../atoms/P';
 import theme from '../../theme';
+import { FullPageBackground } from '../atoms/Containers';
 
 const { colors } = theme;
-const { LIGHTEST_GRAY, DARK_GRAY } = colors;
+const { LIGHTEST_GRAY } = colors;
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100vw;
-  min-height: 100vh;
-  background-color: ${DARK_GRAY};
-  padding: 50px 0;
-`;
 const Title = styled(H1)`
   padding-top: 30px;
   color: ${LIGHTEST_GRAY};
@@ -39,7 +30,7 @@ const StyledP = styled(P)`
 `;
 
 const VerifyError = props => (
-  <Container {...props}>
+  <FullPageBackground {...props}>
     <Navbar />
     <Title>Uh oh...</Title>
     <StyledHR />
@@ -48,7 +39,7 @@ const VerifyError = props => (
       Let{`'`}s try again. Get a new email verification link{' '}
       <Link to="/resend-verification">here</Link>.
     </StyledP>
-  </Container>
+  </FullPageBackground>
 );
 
 export default VerifyError;

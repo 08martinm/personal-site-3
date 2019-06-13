@@ -7,20 +7,11 @@ import HR from '../atoms/HR';
 import P from '../atoms/P';
 import { Link } from '../atoms/Links';
 import theme from '../../theme';
+import { FullPageBackground } from '../atoms/Containers';
 
 const { colors } = theme;
-const { LIGHTEST_GRAY, DARK_GRAY } = colors;
+const { LIGHTEST_GRAY } = colors;
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100vw;
-  min-height: 100vh;
-  background-color: ${DARK_GRAY};
-  padding: 50px 0;
-`;
 const Title = styled(H1)`
   padding-top: 30px;
   color: ${LIGHTEST_GRAY};
@@ -42,7 +33,7 @@ const StyledP = styled(P)`
 `;
 
 const ResetPasswordSuccess = ({ location, ...props }) => (
-  <Container {...props}>
+  <FullPageBackground {...props}>
     <Navbar />
     <Title>Password Reset</Title>
     <StyledHR />
@@ -52,7 +43,7 @@ const ResetPasswordSuccess = ({ location, ...props }) => (
       <br />
       Now you can log in <Link to="/login">here</Link>.
     </StyledP>
-  </Container>
+  </FullPageBackground>
 );
 
 ResetPasswordSuccess.propTypes = {

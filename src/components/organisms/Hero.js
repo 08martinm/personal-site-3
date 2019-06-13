@@ -4,19 +4,12 @@ import HeroGraphic from '../atoms/HeroGraphic';
 import { H1, H2 } from '../atoms/Headers';
 import HR from '../atoms/HR';
 import DownArrow from '../atoms/DownArrow';
-import Column from '../atoms/Column';
-import theme from '../../theme';
+import { SectionContainer } from '../atoms/Containers';
 
-const { colors } = theme;
-const { DARKEST_GRAY } = colors;
-
-const Container = styled(Column)`
-  background-color: ${DARKEST_GRAY};
-  width: 100vw;
+const Container = styled(SectionContainer)`
   height: 700px;
   max-height: 100vh;
-  box-sizing: border-box;
-  padding: 0 20px;
+  position: relative;
 `;
 const PositionedH2 = styled(H2)`
   padding-top: 60px;

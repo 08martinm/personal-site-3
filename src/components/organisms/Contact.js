@@ -11,20 +11,11 @@ import { Input, Password, TextArea } from '../atoms/Inputs';
 import Button from '../atoms/Button';
 import theme from '../../theme';
 import { postUser } from '../../api';
+import { SectionContainer } from '../atoms/Containers';
 
 const { colors } = theme;
-const { DARKEST_GRAY, ERROR } = colors;
+const { ERROR } = colors;
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: ${DARKEST_GRAY};
-  width: 100vw;
-  box-sizing: border-box;
-  padding: 0 20px;
-`;
 const Title = styled(H1)`
   padding-top: 30px;
   text-align: center;
@@ -164,7 +155,7 @@ class Skills extends Component {
     }
 
     return (
-      <Container id="Contact" {...this.props}>
+      <SectionContainer id="Contact" {...this.props}>
         <Title color="white">Contact</Title>
         <HR color="white" />
         <H3 color="white">Let{`'`}s Connect</H3>
@@ -230,7 +221,7 @@ class Skills extends Component {
             Send
           </Button>
         </Form>
-      </Container>
+      </SectionContainer>
     );
   }
 }

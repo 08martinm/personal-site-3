@@ -3,16 +3,11 @@ import styled from 'styled-components';
 import theme from '../../theme';
 import P from '../atoms/P';
 import LinkedIn from '../../../public/LinkedIN.png';
+import { Row } from '../atoms/Containers';
 
 const { colors } = theme;
 const { LIGHT_GRAY } = colors;
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-`;
 const Img = styled.img`
   height: 60px;
   margin-right: 20px;
@@ -26,10 +21,10 @@ const A = styled.a`
 
 const LinkedInLink = props => (
   <A href="http://www.linkedin.com/in/08martinm" {...props}>
-    <Container>
+    <Row>
       <Img src={LinkedIn} alt="Linked In" />
       <Text>www.linkedin.com/in/08martinm</Text>
-    </Container>
+    </Row>
   </A>
 );
 
