@@ -5,6 +5,7 @@ import { H1 } from '../atoms/Headers';
 import HR from '../atoms/HR';
 import Rating from '../molecules/Rating';
 import theme from '../../theme';
+import { SectionContainer, Column } from '../atoms/Containers';
 
 const { colors } = theme;
 const { LIGHT_GRAY } = colors;
@@ -33,11 +34,8 @@ const SKILLS_DATA_2 = [
   { skill: 'Agile, Jira, Trello', stars: 5 },
 ];
 
-const Container = styled.div`
+const Container = styled(SectionContainer)`
   background-color: ${LIGHT_GRAY};
-  width: 100vw;
-  box-sizing: border-box;
-  padding: 0 20px 50px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;
@@ -52,13 +50,7 @@ const Row = styled.div`
   width: 100%;
   padding: 0 75px;
 `;
-const Column = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0 30px;
-`;
+
 const Skills = props => (
   <Container id="Skills" {...props}>
     <Title>Skills</Title>

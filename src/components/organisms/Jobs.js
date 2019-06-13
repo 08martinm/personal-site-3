@@ -5,15 +5,13 @@ import HR from '../atoms/HR';
 import P from '../atoms/P';
 import Credential from '../molecules/Credential';
 import theme from '../../theme';
+import { SectionContainer } from '../atoms/Containers';
 
 const { colors } = theme;
 const { LIGHT_GRAY } = colors;
 
-const Container = styled.div`
+const Container = styled(SectionContainer)`
   background-color: ${LIGHT_GRAY};
-  width: 100vw;
-  box-sizing: border-box;
-  padding: 0 20px 50px;
 `;
 const Title = styled(H1)`
   padding-top: 30px;

@@ -12,8 +12,6 @@ const { DARKEST_GRAY, LIGHT_GRAY, BLUE } = colors;
 
 const Container = styled.div`
   background-color: ${DARKEST_GRAY};
-  width: 100vw;
-  box-sizing: border-box;
   padding: 60px 0;
 `;
 const Title = styled(H1)`

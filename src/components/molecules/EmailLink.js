@@ -3,16 +3,11 @@ import styled from 'styled-components';
 import theme from '../../theme';
 import P from '../atoms/P';
 import Symbol from '../../../public/Mail.ru.svg';
+import { Row } from '../atoms/Containers';
 
 const { colors } = theme;
 const { LIGHT_GRAY } = colors;
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-`;
 const Img = styled.img`
   height: 60px;
   margin-right: 20px;
@@ -26,10 +21,10 @@ const A = styled.a`
 
 const EmailLink = props => (
   <A href="mailto:08martinm@gmail.com" {...props}>
-    <Container {...props}>
+    <Row {...props}>
       <Img src={Symbol} alt="@" />
       <Text>08martinm@gmail.com</Text>
-    </Container>
+    </Row>
   </A>
 );
 

@@ -6,20 +6,11 @@ import { H1, H3 } from '../atoms/Headers';
 import HR from '../atoms/HR';
 import LI from '../atoms/LI';
 import theme from '../../theme';
+import { FullPageBackground } from '../atoms/Containers';
 
 const { colors } = theme;
-const { LIGHTEST_GRAY, DARK_GRAY } = colors;
+const { LIGHTEST_GRAY } = colors;
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100vw;
-  min-height: 100vh;
-  background-color: ${DARK_GRAY};
-  padding: 50px 0;
-`;
 const Title = styled(H1)`
   padding-top: 30px;
   color: ${LIGHTEST_GRAY};
@@ -44,7 +35,7 @@ const OL = styled.ol`
 `;
 
 const ForgotPasswordSuccess = ({ location, ...props }) => (
-  <Container {...props}>
+  <FullPageBackground {...props}>
     <Navbar />
     <Title>Email sent</Title>
     <StyledHR />
@@ -55,7 +46,7 @@ const ForgotPasswordSuccess = ({ location, ...props }) => (
       </StyledLI>
       <StyledLI>Choose a new password</StyledLI>
     </OL>
-  </Container>
+  </FullPageBackground>
 );
 
 ForgotPasswordSuccess.propTypes = {

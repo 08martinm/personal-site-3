@@ -7,26 +7,13 @@ import P from '../atoms/P';
 import Navbar from '../molecules/Navbar';
 import LinkedInLink from '../molecules/LinkedInLink';
 import theme from '../../theme';
+import { FullPageBackground, Column } from '../atoms/Containers';
 
 const { colors } = theme;
-const { DARKEST_GRAY, LIGHTEST_GRAY } = colors;
+const { LIGHTEST_GRAY } = colors;
 
-const Container = styled.div`
-  min-width: 100vw;
-  min-height: 100vh;
-  background-color: ${DARKEST_GRAY};
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  padding-top: 60px;
-`;
-const Content = styled.div`
+const Content = styled(Column)`
   max-width: 600px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
 `;
 const ScheduleForm = styled.div`
   width: 320px;
@@ -86,7 +73,7 @@ class Calendar extends Component {
 
   render() {
     return (
-      <Container>
+      <FullPageBackground>
         <Navbar />
         <Title>Connect</Title>
         <StyledHR />
@@ -119,7 +106,7 @@ class Calendar extends Component {
           </Text>
           <LinkedIn />
         </Content>
-      </Container>
+      </FullPageBackground>
     );
   }
 }
